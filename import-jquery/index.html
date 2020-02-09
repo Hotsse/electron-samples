@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>import jquery</title>
+        <script type="text/javascript">window.$ = window.jQuery = require('./plugins/jquery.min.js')</script>
+    </head>
+    <body>        
+        <div>
+            <button id="countBtn">click me!</button>
+        </div>
+        <div>
+            count : <span id="countTxt">0</span>
+        </div>
+        
+        
+        <script type="text/javascript">
+        
+            var count = 0
+            $('#countBtn').click(() => {
+                $("#countTxt").text(++count)
+            })
+        </script>
+    </body>
+</html>
