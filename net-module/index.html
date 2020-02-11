@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Net Module</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var net = require('net')
+            var client = net.connect({port:8080}, ()=>{
+                console.log('Connection established!')
+            })
+
+            client.on('data', (data)=>{
+                alert(data.toString())                
+                client.end()
+            })
+
+            client.on('end', ()=>{
+                console.log('Disconnected :(')
+            })
+        </script>
+    </body>
+</html>
