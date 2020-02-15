@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Inter Process Comm.</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const {ipcRenderer} = require('electron')
+
+            console.log(ipcRenderer.sendSync('synchronous-message', 'sync-ping'))
+
+            ipcRenderer.on('asynchronous-replay', (event, arg) => {
+                console.log(arg)
+            })
+
+            ipcRenderer.send('asynchronous-message', 'async ping')
+        </script>
+    </body>
+</html>
