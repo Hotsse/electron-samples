@@ -10,7 +10,7 @@
 
             console.log(ipcRenderer.sendSync('synchronous-message', 'sync-ping'))
 
-            ipcRenderer.on('asynchronous-replay', (event, arg) => {
+            ipcRenderer.on('asynchronous-reply', (event, arg) => {
                 console.log(arg)
             })
 

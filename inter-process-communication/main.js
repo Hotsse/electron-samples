@@ -26,7 +26,7 @@ function createWindow(){
 ipcMain.on('asynchronous-message', (event, arg) => {
     console.log(arg)
 
-    event.sender.send('asynchronous-reply', 'async pong')
+    event.reply('asynchronous-reply', 'async pong')
 })
 
 ipcMain.on('synchronous-message', (event, arg) => {
