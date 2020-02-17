@@ -23,17 +23,19 @@ function createWindow(){
     win.webContents.openDevTools()
 }
 
+
 ipcMain.on('openFile', (event, path) => {
     const {dialog} = require('electron')
     const fs = require('fs')
 
-    dialog.showOpenDialog(function(fileNames){
-        if(fileNames === undefined){
-            console.log("No file selected")
+    dialog.showOpenDialog().then((files)=>{
+        if(files.canceled){
+            console.log('No file selected')
         }
-        else{
-            readFile(fileNlames[0])
+        else {
+            readFile(files.filePaths[0])
         }
+
     })
 
     function readFile(filepath) {
