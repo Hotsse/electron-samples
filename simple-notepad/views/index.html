@@ -1,0 +1,121 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Simple Notepad</title>
+
+    <link type="text/css" rel="stylesheet" href="../plugins/css/index.css" />
+    <link type="text/css" rel="stylesheet" href="../plugins/css/bootstrap.min.css" />
+
+    <script type="text/javascript">$ = jQuery = require('jquery')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <textarea class="default" id="mainTextArea"
+        onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"></textarea>
+
+    <div class="container">
+    
+        <div class="modal fade" id="selectTheme">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+    
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6" >
+                                <div class="row" style="margin:20px;">
+                                    <textarea class="default preview" rows="12" readonly>
+const {app, BrowserWindow} = require('electron')
+
+let win
+
+app.on('ready', () => {
+    win = new BrowserWindow({width:800, height:600})
+    win.loadURL(`file://${__dirname}/index.html`)
+})
+
+app.on('closed', () => {
+    win = null
+})</textarea>
+                                </div>
+                                <div class="row" style="margin:20px;">
+                                    <button class="btn btn-block btn-outline-secondary" onclick="changeTheme('default')">기본</button>
+                                </div>                                
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row" style="margin:20px;">
+                                    <textarea class="dark preview" rows="12" readonly>
+const {app, BrowserWindow} = require('electron')
+
+let win
+
+app.on('ready', () => {
+    win = new BrowserWindow({width:800, height:600})
+    win.loadURL(`file://${__dirname}/index.html`)
+})
+
+app.on('closed', () => {
+    win = null
+})</textarea>
+                                </div>
+                                <div class="row" style="margin:20px;">
+                                    <button class="btn btn-block btn-outline-secondary" onclick="changeTheme('dark')">어두운</button>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        const { ipcRenderer } = require('electron')
+
+        ipcRenderer.on('reqFileData', (event, data) => {
+            const contents = $('#mainTextArea').val()
+            ipcRenderer.send('sendContents', contents);
+        });
+
+        ipcRenderer.on('fileData', (event, data) => {
+            $('#mainTextArea').val(data)
+        });
+
+        ipcRenderer.on('alert', (event, data) => {
+            alert(data)
+        })
+
+        ipcRenderer.on('refresh', (event, data) => {
+            window.location.reload()
+        })
+
+
+
+        var changeTheme = (theme) => {
+            ipcRenderer.send('setTheme', theme);
+        }
+
+        ipcRenderer.on('selectTheme', () => {
+            $('#selectTheme').modal()
+        })
+
+        ipcRenderer.on('setTheme', (event, data) => {
+            $('#mainTextArea').removeClass()
+            $('#mainTextArea').addClass(data)
+            $('#selectTheme').modal('hide');
+        })
+
+        ipcRenderer.send('loadUserOptions', null)
+
+        var saveOptions = () => {
+            ipcRenderer.send('saveUserOptions', null)
+        }
+
+    </script>
+</body>
+
+</html>
