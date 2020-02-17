@@ -12,12 +12,15 @@
 </head>
 
 <body>
-    <textarea class="default" id="mainTextArea"
+    
+    <pre id="mainLineNum">1</pre>
+    <textarea class="maintext default" id="mainTextArea"
         onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"></textarea>
+    
 
     <div class="container">
     
-        <div class="modal fade" id="selectTheme">
+        <div class="modal fade" id="selectTheme" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
     
@@ -25,7 +28,7 @@
                         <div class="row">
                             <div class="col-sm-6" >
                                 <div class="row" style="margin:20px;">
-                                    <textarea class="default preview" rows="12" readonly>
+                                    <textarea class="maintext default preview" rows="12" readonly>
 const {app, BrowserWindow} = require('electron')
 
 let win
@@ -45,7 +48,7 @@ app.on('closed', () => {
                             </div>
                             <div class="col-sm-6">
                                 <div class="row" style="margin:20px;">
-                                    <textarea class="dark preview" rows="12" readonly>
+                                    <textarea class="maintext dark preview" rows="12" readonly>
 const {app, BrowserWindow} = require('electron')
 
 let win
@@ -114,6 +117,19 @@ app.on('closed', () => {
         var saveOptions = () => {
             ipcRenderer.send('saveUserOptions', null)
         }
+
+        String.prototype.lines = function() { return this.split(/\r*\n/); }
+        String.prototype.lineCount = function() { return this.lines().length; }
+
+        $('#mainTextArea').keyup(()=>{
+            var line = $('#mainTextArea').val().lineCount()
+            var text = "";
+            for(i=1; i<=line; i++){
+                text += `${i}\r\n`
+            }
+            $("#mainLineNum").html(text)
+        })
+        
 
     </script>
 </body>

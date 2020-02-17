@@ -3,16 +3,25 @@ body{
     padding:0;
 }
 
-textarea {
-    width: 100%;
+pre {
+    width: 20px;
     height: 100%;
-    resize: none  !important;
-    border: none  !important;
-    outline: none  !important;   
-    -moz-tab-size : 4;
-    -o-tab-size : 4;
-    tab-size : 4;
-    font-family: Consolas
+    padding: 0 !important;
+    margin: 0 !important;
+    float:left;
+}
+
+textarea {
+    width: calc(100% - 20px);
+    height: 100%;
+    resize: none !important;
+    border: none !important;
+    outline: none !important;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    font-family: Consolas;
+    float: left;    
 }
 
 textarea.preview {
