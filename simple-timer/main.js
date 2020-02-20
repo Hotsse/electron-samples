@@ -5,13 +5,14 @@ let win = null
 app.on('ready', () => {
     win = new BrowserWindow({
         width: 200,
-        height: 150,
+        height: 120,
         webPreferences: {
             nodeIntegration: true
         },
         titleBarStyle: 'hiddenInset', // set the title bar style
-        backgroundColor: "#ccc", // set the background color
+        backgroundColor: "#111", // set the background color
         frame:false,
+        alwaysOnTop:true,
         show: false
     })
 

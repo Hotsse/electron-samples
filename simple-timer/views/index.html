@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- meta -->
     <meta charset="utf-8" />
     <title>Simple Timer</title>
 
-    <script src="../plugins/js/jquery.min.js"></script>
+    <!-- css -->
+    <link type="text/css" rel="stylesheet" href="../plugins/css/bootstrap.min.css" />
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            background-color: #111;
+        }
+        html {
+            -webkit-app-region: drag;
+        }
+
+        button {
+            -webkit-app-region: no-drag;
+        }
+
+        h1 {
+            color: #fff;
+        }
+    </style>
+
+    <!-- js -->
     <script type="text/javascript">
         var time = 0
         var timeInterval = null
 
         var startTimer = () => {
             clearInterval(timeInterval)
-            timeInterval = setInterval(updateTimer, 1)
+            timeInterval = setInterval(updateTimer, 1000)
         }
 
         var updateTimer = () => {
@@ -45,13 +66,15 @@
     </script>
 </head>
 <body>
-    <div>
-        <h1 id="timer" style="font-size: 40px;">00:00:00</h1>
-        <button id="start" onclick="startTimer()">시작</button>
-        <button id="start" onclick="stopTimer()">멈춤</button>
-        <button id="start" onclick="resetTimer()">리셋</button>
-    </div>
 
+    <div class="text-center">
+        <h1 id="timer" style="font-size: 45px;">00:00:00</h1>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" onclick="startTimer()">시작</button>
+        <button class="btn btn-danger" onclick="stopTimer()">멈춤</button>
+        <button class="btn btn-secondary" onclick="resetTimer()">리셋</button>
+    </div>
     
 </body>
 </html>
