@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Simple Timer</title>
+
+    <script src="../plugins/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var time = 0
+        var timeInterval = null
+
+        var startTimer = () => {
+            clearInterval(timeInterval)
+            timeInterval = setInterval(updateTimer, 1)
+        }
+
+        var updateTimer = () => {
+            time++
+            displayTimer()           
+        }
+
+        var stopTimer = () => {
+            clearInterval(timeInterval)
+        }
+
+        var resetTimer = () => {
+            stopTimer()
+            time = 0
+            displayTimer()
+        }
+
+        var displayTimer = () => {
+            hour = parseInt(time / 3600)
+            min = parseInt((time - hour * 3600) / 60)
+            sec = (time - ((hour * 3600) + (min * 60)))
+
+            text = `${pad(hour, 2)}:${pad(min, 2)}:${pad(sec,2)}`
+            document.getElementById('timer').innerText = text
+        }
+
+        var pad = (n, width) => {
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+        }        
+    </script>
+</head>
+<body>
+    <div>
+        <h1 id="timer" style="font-size: 40px;">00:00:00</h1>
+        <button id="start" onclick="startTimer()">시작</button>
+        <button id="start" onclick="stopTimer()">멈춤</button>
+        <button id="start" onclick="resetTimer()">리셋</button>
+    </div>
+
+    
+</body>
+</html>
