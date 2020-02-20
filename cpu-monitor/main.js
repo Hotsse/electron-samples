@@ -1,8 +1,9 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Tray} = require('electron')
 const path = require('path')
 const url = require('url')
 
 let win = null
+let tray = null
 
 app.on('ready', () => {
   
@@ -25,7 +26,13 @@ app.on('ready', () => {
     slashes: true
   }))
 
-  win.on('ready-to-show', () => {
-    win.show()
+  tray = new Tray(`${__dirname}/assets/tray_icon.jpg`)
+
+  tray.on('click', () => {
+    win.isVisible() ? win.hide() : win.show()
   })
+})
+
+app.on('closed', () => {
+  win = null
 })
