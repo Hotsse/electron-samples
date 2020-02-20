@@ -18,7 +18,7 @@ var createWindow = () => {
 
     win.loadURL(`file://${__dirname}/views/index.html`)
 
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 
     option = require('./option/option.js')
 }

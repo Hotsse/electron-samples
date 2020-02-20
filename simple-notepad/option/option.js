@@ -1,6 +1,6 @@
 let {ipcMain} = require('electron')
 let fs = require('fs')
-let filename = 'options'
+let filename = `${__dirname}/../options`
 
 // load user options
 const loadUserOptions = () => {
