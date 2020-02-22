@@ -13,6 +13,7 @@ app.on('ready', () => {
         backgroundColor: "#111", // set the background color
         frame:false,
         alwaysOnTop:true,
+        resizable: false,
         show: false
     })
 
@@ -26,7 +27,7 @@ app.on('ready', () => {
     })
 
     tray.on('right-click', () => {
-        win = null
+        // win = null
     })
 })
 

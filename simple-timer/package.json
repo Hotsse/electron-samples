@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-packager ./ simple-timer --platform=win32 --arch x64 --out /build/electron/simple-timer --prune --electron-version=8.0.0 --overwrite"
   },
   "author": "",
   "license": "ISC"
