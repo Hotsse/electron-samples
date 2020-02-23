@@ -1,0 +1,12 @@
+{
+  "name": "webview-ontop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-packager ./ webview-ontop --platform=win32 --arch x64 --out /build/electron/webview-ontop --prune --electron-version=8.0.0 --overwrite"
+  },
+  "author": "",
+  "license": "ISC"
+}

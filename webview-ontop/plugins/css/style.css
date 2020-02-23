@@ -1,0 +1,31 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.dragable {
+    height:30px;
+    -webkit-app-region: drag;
+}
+
+button {
+    -webkit-app-region: no-drag;
+}
+
+.webview {
+    width: 100%;
+    height: calc(100% - 30px);
+}
+
+.platform.platform-twitch {
+    background-color: #914AFC;
+    border: #914AFC 1px solid;
+    color: #fff;
+}
+
+.platform.platform-youtube {
+    background-color: #FD0017;
+    border: #FD0017 1px solid;
+    color: #fff;
+}

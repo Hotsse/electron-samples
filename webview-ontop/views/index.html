@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />        
+        <title>My TV</title>
+
+        <link type="text/css" rel="stylesheet" href="../plugins/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="../plugins/css/style.css" />
+    </head>
+
+    <body>
+        <div class="dragable">
+            <button class="btn platform platform-twitch" onclick="changeUrl('TWITCH')">Twitch</button>
+            <button class="btn platform platform-youtube" onclick="changeUrl('YOUTUBE')">Youtube</button>
+        </div>
+        
+        <div master id="contentWrapper" class="webview">
+            <webview ng-style="style" id="content" src="https://www.twitch.tv/" style="width:100%; height:100%" autosize="on" allowpopups></webview>
+        </div>
+
+        <script type="text/javascript">
+            var changeUrl = (platform) => {
+                webview = document.getElementById('content')
+                if(platform == 'TWITCH') {
+                    webview.setAttribute('src', 'https://twitch.tv')
+                    alert(document.getElementsByClassName('platform-twitch').style.backgroundColor)
+                }
+                else if(platform == 'YOUTUBE') {
+                    webview.setAttribute('src', 'https://youtube.com')
+                }
+            }
+        </script>
+
+    </body>
+</html>
