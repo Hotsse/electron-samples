@@ -26,7 +26,7 @@ app.on('ready', () => {
     slashes: true
   }))
 
-  tray = new Tray(`${__dirname}/assets/tray_icon.jpg`)
+  tray = new Tray(`${__dirname}/assets/tray_icon2.jpg`)
 
   tray.on('click', () => {
     win.isVisible() ? win.hide() : win.show()
