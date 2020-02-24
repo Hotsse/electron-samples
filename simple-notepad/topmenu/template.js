@@ -3,83 +3,103 @@ const { refreshText, openText, saveText, saveAsText } = require("./controller");
 
 const menu = [
 {
-	label: "File",
+	label: "파일",
 	submenu: [
 	{
-		label: "New",
+		label: "새로 만들기",
 		accelerator: "CmdOrCtrl+N",
 		click() {
 			refreshText();
 		}
 	},
 	{
-		label: "Oepn",
+		label: "열기",
 		accelerator: "CmdOrCtrl+O",
 		click() {
 			openText();
 		}
 	},
 	{
-		label: "Save",
+		label: "저장",
     	accelerator: "CmdOrCtrl+S",
     	click() {
     		saveText();
     	}
 	},
 	{
-		label: "Save As",
+		label: "다른 이름으로 저장",
     	accelerator: "CmdOrCtrl+Shift+S",
     	click() {
     		saveAsText();
     	}
 	},
 	{ type: "separator" },
-	{ role: "close" }
+	{
+		label: "끝내기",
+		role: "close"
+	}
     ]
 },
 {
-	label: "Edit",
+	label: "편집",
 	submenu: [
-	{ role: "undo" },
-	{ role: "redo" },
+	{
+		label: "실행 취소",
+		role: "undo"
+	},
 	{ type: "separator" },
-	{ role: "cut" },
-	{ role: "copy" },
-	{ role: "paste" },
-	{ role: "pasteandmatchstyle" },
-	{ role: "delete" },
-	{ role: "selectall" }
+	{
+		label: "잘라내기",
+		role: "cut"
+	},
+	{
+		label: "복사",
+		role: "copy"
+	},
+	{
+		label: "붙여넣기",
+		role: "paste"
+	},
+	{
+		label: "삭제",
+		role: "delete",
+		accelerator: "Delete",
+	},
+	{ type: "separator" },
+	{
+		label: "모두 선택",
+		role: "selectall"
+	}
 	]
 },
 {
-	label: "View",
+	label: "보기",
     submenu: [
 	{
-    	label: "Larger",
+    	label: "확대",
     	role: "zoomin"
     },
     {
-    	label: "Smaller",
+    	label: "축소",
     	role: "zoomout"
     },
     {
-    	label: "Reset size",
+    	label: "원래대로",
 		role: "resetzoom"
-    },
-    { type: "separator" }
-    ]
-},
-{
-	role: "window",
-	submenu: [
+	},
+	{ type: "separator" },
 	{
-    	lebel: "Full/Small",
+    	label: "전체/기본화면",
     	role: "togglefullscreen"
 	},
-    { role: "Minimize" }
+    {
+		label: "최소화",
+		role: "Minimize"
+	}
     ]
 },
 {
+	label: "도움말",
 	role: "help",
 	submenu: [
 	{

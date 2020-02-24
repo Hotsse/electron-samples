@@ -78,39 +78,48 @@ app.on('closed', () => {
     <script type="text/javascript">
         const { ipcRenderer } = require('electron')
 
+        // 본문 데이터 요청
         ipcRenderer.on('reqFileData', (event, data) => {
             const contents = $('#mainTextArea').val()
             ipcRenderer.send('sendContents', contents);
         });
 
+        // 본문 데이터 송신
         ipcRenderer.on('fileData', (event, data) => {
             $('#mainTextArea').val(data)
         });
 
+        // alert 요청
         ipcRenderer.on('alert', (event, data) => {
             alert(data)
         })
 
+        // 새로고침 요청
         ipcRenderer.on('refresh', (event, data) => {
             window.location.reload()
         })
         
-        var changeTheme = (theme) => {
-            ipcRenderer.send('setTheme', theme);
-        }
-
+        // 테마 변경창 생성 요청
         ipcRenderer.on('selectTheme', () => {
             $('#selectTheme').modal()
         })
 
+        // 테마 변경
+        var changeTheme = (theme) => {
+            ipcRenderer.send('setTheme', theme);
+        }
+
+        // 테마 변경 요청
         ipcRenderer.on('setTheme', (event, data) => {
             $('#mainTextArea').removeClass()
             $('#mainTextArea').addClass(data)
             $('#selectTheme').modal('hide');
         })
 
+        // 옵션 불러오기 실행
         ipcRenderer.send('loadUserOptions', null)
 
+        // 옵션 저장
         var saveOptions = () => {
             ipcRenderer.send('saveUserOptions', null)
         }
