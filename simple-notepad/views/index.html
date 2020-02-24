@@ -94,9 +94,7 @@ app.on('closed', () => {
         ipcRenderer.on('refresh', (event, data) => {
             window.location.reload()
         })
-
-
-
+        
         var changeTheme = (theme) => {
             ipcRenderer.send('setTheme', theme);
         }
@@ -116,19 +114,6 @@ app.on('closed', () => {
         var saveOptions = () => {
             ipcRenderer.send('saveUserOptions', null)
         }
-
-        String.prototype.lines = function() { return this.split(/\r*\n/); }
-        String.prototype.lineCount = function() { return this.lines().length; }
-
-        $('#mainTextArea').keyup(()=>{
-            var line = $('#mainTextArea').val().lineCount()
-            var text = "";
-            for(i=1; i<=line; i++){
-                text += `${i}\r\n`
-            }
-            $("#mainLineNum").html(text)
-        })
-        
 
     </script>
 </body>

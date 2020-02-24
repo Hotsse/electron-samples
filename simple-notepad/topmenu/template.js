@@ -3,7 +3,7 @@ const { refreshText, openText, saveText, saveAsText } = require("./controller");
 
 const menu = [
 {
-	label: "Edit",
+	label: "File",
 	submenu: [
 	{
 		label: "New",
@@ -33,17 +33,23 @@ const menu = [
     		saveAsText();
     	}
 	},
-	
-	{ role: "undo" },
-    { role: "redo" },
-    { type: "separator" },
-    { role: "cut" },
-    { role: "copy" },
-    { role: "paste" },
-    { role: "pasteandmatchstyle" },
-    { role: "delete" },
-    { role: "selectall" }
+	{ type: "separator" },
+	{ role: "close" }
     ]
+},
+{
+	label: "Edit",
+	submenu: [
+	{ role: "undo" },
+	{ role: "redo" },
+	{ type: "separator" },
+	{ role: "cut" },
+	{ role: "copy" },
+	{ role: "paste" },
+	{ role: "pasteandmatchstyle" },
+	{ role: "delete" },
+	{ role: "selectall" }
+	]
 },
 {
 	label: "View",
@@ -70,8 +76,7 @@ const menu = [
     	lebel: "Full/Small",
     	role: "togglefullscreen"
 	},
-    { role: "Minimize" },
-    { role: "close" }
+    { role: "Minimize" }
     ]
 },
 {

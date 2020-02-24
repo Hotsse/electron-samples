@@ -6,7 +6,7 @@ global.settings = {}
 settings.theme = 'default'
 settings.param1 = 'value1'
 
-var createWindow = () => {
+app.on('ready', () => {
 
     win = new BrowserWindow({
         width: 1200,
@@ -17,13 +17,10 @@ var createWindow = () => {
     })
 
     win.loadURL(`file://${__dirname}/views/index.html`)
-
     // win.webContents.openDevTools()
 
     option = require('./option/option.js')
-}
-
-app.on('ready', createWindow)
+})
 
 app.on('closed', () => {
     win = null
